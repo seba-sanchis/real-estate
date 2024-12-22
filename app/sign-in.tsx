@@ -1,11 +1,33 @@
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Image, ScrollView, Text, TouchableOpacity, View } from "react-native";
+import { Redirect } from "expo-router";
+import {
+  Alert,
+  Image,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import icons from "@/constants/icons";
 import images from "@/constants/images";
+import { signIn } from "@/lib/appwrite";
+import { useGlobalContext } from "@/providers/global-provider";
 
 export default function SignIn() {
-  function handleSignIn() {}
+  const { refetch, loading, isLoggedIn } = useGlobalContext();
+
+  if (!loading && isLoggedIn) return <Redirect href="/" />;
+
+  async function handleSignIn() {
+    const result = await signIn();
+
+    if (result) {
+      refetch();
+    } else {
+      Alert.alert("Error", "Failed to sign in");
+    }
+  }
 
   return (
     <SafeAreaView className="bg-white h-full">

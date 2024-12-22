@@ -18,7 +18,7 @@ client
 export const avatar = new Avatars(client);
 export const account = new Account(client);
 
-export async function login() {
+export async function signIn() {
   try {
     const redirectUri = Linking.createURL("/");
 
@@ -54,7 +54,7 @@ export async function login() {
   }
 }
 
-export async function logout() {
+export async function signOut() {
   try {
     await account.deleteSession("current");
     return true;
