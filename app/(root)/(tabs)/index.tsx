@@ -13,11 +13,11 @@ import {
 import icons from "@/constants/icons";
 import Search from "@/components/search";
 import Filters from "@/components/filters";
+import NoResults from "@/components/no-results";
 import { useAppwrite } from "@/hooks/use-appwrite";
 import { Card, FeaturedCard } from "@/components/cards";
 import { useGlobalContext } from "@/providers/global-provider";
 import { getLatestProperties, getProperties } from "@/lib/appwrite";
-import NoResults from "@/components/no-results";
 
 export default function Index() {
   const { user } = useGlobalContext();
